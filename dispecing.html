@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dispečing</title>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+select, textarea, button, input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+select[multiple] {
+  height: 220px;
+}
+
+textarea {
+  height: 180px;
+}
+
+/* aby Select2 sedel vizuálne s ostatnými poľami */
+.select2-container .select2-selection--single {
+  height: 42px !important;
+  padding-top: 5px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 28px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 40px !important;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Dispečing</h1>
+
+<label for="auta">Autá (môžeš vybrať viac)</label>
+<select id="auta" multiple>
+  <option value="AA223TE">AA223TE (8k)</option>
+  <option value="AA444AJ">AA444AJ (N)</option>
+  <option value="Cat730-2019">Cat730-2019 (Dumper)</option>
+  <option value="Cat730-2023">Cat730-2023 (Dumper)</option>
+  <option value="LV758BP">LV758BP (2)</option>
+  <option value="MBAR0CS">MBAR0CS (8k)</option>
+  <option value="MBAROCS">MBAROCS (8k)</option>
+  <option value="ZC039BR">ZC039BR (N)</option>
+  <option value="ZC111BL">ZC111BL (10k)</option>
+  <option value="ZC111BN">ZC111BN (8k)</option>
+  <option value="ZC222BK">ZC222BK (8k)</option>
+  <option value="ZC222BL">ZC222BL (10k)</option>
+  <option value="ZC222BO">ZC222BO (N)</option>
+  <option value="ZC222BP">ZC222BP (8k-cisterna)</option>
+  <option value="ZC282AS">ZC282AS (8k)</option>
+  <option value="ZC333BL">ZC333BL (10k)</option>
+  <option value="ZC333BO">ZC333BO (N)</option>
+  <option value="ZC393AV">ZC393AV (8k)</option>
+  <option value="ZC403BD">ZC403BD (8k)</option>
+  <option value="ZC444BL">ZC444BL (10k)</option>
+  <option value="ZC444BM">ZC444BM (8k)</option>
+  <option value="ZC496BV">ZC496BV (N)</option>
+  <option value="ZC498BV">ZC498BV (N)</option>
+  <option value="ZC555BE">ZC555BE (8k)</option>
+  <option value="ZC555BM">ZC555BM (8k)</option>
+  <option value="ZC639BE">ZC639BE</option>
+  <option value="ZC666BN">ZC666BN (8k+ruka)</option>
+  <option value="ZC666BR">ZC666BR (2)</option>
+  <option value="ZC740BV">ZC740BV (10k)</option>
+  <option value="ZC836BV">ZC836BV (10k)</option>
+  <option value="ZC888BK">ZC888BK (8k)</option>
+  <option value="ZC888BP">ZC888BP (N)</option>
+  <option value="ZC914BN">ZC914BN (man kontajner)</option>
+  <option value="ZC917BE">ZC917BE (8k)</option>
+  <option value="ZC919AK">ZC919AK (8k)</option>
+  <option value="ZC988BA">ZC988BA</option>
+  <option value="ZC999BP">ZC999BP (8k)</option>
+  <option value="ZCAROCS">ZCAROCS (N)</option>
+  <option value="ZCFMXII">ZCFMXII (10k)</option>
+  <option value="ZCFMXIX">ZCFMXIX (10k)</option>
+  <option value="ZCFMXXI">ZCFMXXI (10k)</option>
+  <option value="ZCFMXXX">ZCFMXXX (10k)</option>
+  <option value="ZCIIIII">ZCIIIII (N)</option>
+  <option value="ZCJJJXX">ZCJJJXX (8k)</option>
+  <option value="ZCMETLA">ZCMETLA</option>
+  <option value="ZCXXXJJ">ZCXXXJJ (8k)</option>
+</select>
+
+<label for="nakladka">Nakládka</label>
+<select id="nakladka">
+  <option>Lom KSR Tepličky</option>
+  <option>Lom Sása</option>
+  <option>Lom Podrohy</option>
+  <option>Lom Eurovia Vígľaš</option>
+  <option>Lom Husiná</option>
+  <option>Lom Olcňava</option>
+  <option>Lom Hrondín</option>
+  <option>Štrkovisko Veľké Úľany</option>
+  <option>Lom Brehy</option>
+  <option>Lom Tlmače</option>
+  <option>Lom Kozárovce</option>
+  <option>Lom Lehota p. Vtáčnikom</option>
+  <option>Šurany</option>
+  <option>Metrostav Ľupča</option>
+  <option>Doprastav Ľupča</option>
+  <option>Joka BB</option>
+  <option>Pemax Ľupča</option>
+  <option>Pemax Kremnica</option>
+  <option>Strabag Kremnica</option>
+  <option>Letisko Sliač</option>
+  <option>Royal-stav ZH</option>
+  <option>PSin ZV</option>
+  <option>Detva</option>
+  <option>Lom Medzibrod</option>
+  <option>Obalovačka Tisovník</option>
+  <option>Brusno</option>
+  <option>H.Beňadik</option>
+  <option>Korytárky</option>
+  <option>Ružiná</option>
+  <option>Stožiar</option>
+  <option>ZV-Stavebniny</option>
+  <option>RBR ZH</option>
+  <option>Obalovačka Hanišberg</option>
+  <option>ZV-Zelený háj</option>
+  <option>Bzovík</option>
+  <option>N.Baňa</option>
+  <option>Lom Rim. Baňa</option>
+  <option>Senohrad</option>
+  <option>ZV-škola</option>
+  <option>PD</option>
+  <option>Čerenčany</option>
+  <option>Obalovačka Obdokovce</option>
+  <option>Pohranice</option>
+  <option>Vedos Budča</option>
+  <option>Lieskovec</option>
+  <option>Rykynčice</option>
+</select>
+
+<label for="vykladka">Vykládka</label>
+<select id="vykladka">
+  <option>Lom KSR Tepličky</option>
+  <option>Lom Sása</option>
+  <option>Lom Podrohy</option>
+  <option>Lom Eurovia Vígľaš</option>
+  <option>Lom Husiná</option>
+  <option>Lom Olcňava</option>
+  <option>Lom Hrondín</option>
+  <option>Štrkovisko Veľké Úľany</option>
+  <option>Lom Brehy</option>
+  <option>Lom Tlmače</option>
+  <option>Lom Kozárovce</option>
+  <option>Lom Lehota p. Vtáčnikom</option>
+  <option>Šurany</option>
+  <option>Metrostav Ľupča</option>
+  <option>Doprastav Ľupča</option>
+  <option>Joka BB</option>
+  <option>Pemax Ľupča</option>
+  <option>Pemax Kremnica</option>
+  <option>Strabag Kremnica</option>
+  <option>Letisko Sliač</option>
+  <option>Royal-stav ZH</option>
+  <option>PSin ZV</option>
+  <option>Detva</option>
+  <option>Lom Medzibrod</option>
+  <option>Obalovačka Tisovník</option>
+  <option>Brusno</option>
+  <option>H.Beňadik</option>
+  <option>Korytárky</option>
+  <option>Ružiná</option>
+  <option>Stožiar</option>
+  <option>ZV-Stavebniny</option>
+  <option>RBR ZH</option>
+  <option>Obalovačka Hanišberg</option>
+  <option>ZV-Zelený háj</option>
+  <option>Bzovík</option>
+  <option>N.Baňa</option>
+  <option>Lom Rim. Baňa</option>
+  <option>Senohrad</option>
+  <option>ZV-škola</option>
+  <option>PD</option>
+  <option>Čerenčany</option>
+  <option>Obalovačka Obdokovce</option>
+  <option>Pohranice</option>
+  <option>Vedos Budča</option>
+  <option>Lieskovec</option>
+  <option>Rykynčice</option>
+</select>
+
+<label for="material">Materiál</label>
+<select id="material">
+  <option>Betóny</option>
+  <option>Betón</option>
+  <option>Suť</option>
+  <option>Zemina</option>
+  <option>Násyp</option>
+  <option>Ornica</option>
+  <option>Frezing</option>
+  <option>Asfalt</option>
+  <option>Lom.kamen</option>
+  <option>0/300</option>
+  <option>0/90</option>
+  <option>0/32</option>
+  <option>0/63</option>
+  <option>32/63</option>
+  <option>0/4</option>
+  <option>8/16</option>
+  <option>4/8</option>
+  <option>8/32</option>
+  <option>0/8</option>
+  <option>63/125</option>
+  <option>Skrývka</option>
+  <option>16/32</option>
+</select>
+
+<label for="kontakt">Kontakt (voliteľné)</label>
+<input id="kontakt" type="text">
+
+<button onclick="vytvorSMS()">Vytvoriť SMS</button>
+
+<label for="vysledok">Výsledok</label>
+<textarea id="vysledok"></textarea>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+function zoradSelect(id) {
+  const select = document.getElementById(id);
+  const options = Array.from(select.options);
+
+  options.sort((a, b) =>
+    a.text.localeCompare(b.text, 'sk', { sensitivity: 'base' })
+  );
+
+  select.innerHTML = '';
+  options.forEach(o => select.appendChild(o));
+}
+
+function vytvorSMS() {
+  const autaSelect = document.getElementById('auta');
+  const vybraneAuta = Array.from(autaSelect.selectedOptions).map(o => o.value);
+
+  const nakladka = document.getElementById('nakladka').value;
+  const vykladka = document.getElementById('vykladka').value;
+  const material = document.getElementById('material').value;
+  const kontakt = document.getElementById('kontakt').value.trim();
+
+  let text = "AUTÁ:\n" + vybraneAuta.join("\n") +
+    "\n\nNakládka: " + nakladka +
+    "\nVykládka: " + vykladka +
+    "\nMateriál: " + material;
+
+  if (kontakt !== "") {
+    text += "\nKontakt: " + kontakt;
+  }
+
+  document.getElementById('vysledok').value = text;
+}
+
+function otvorSMSApp() {
+  const text = document.getElementById('vysledok').value.trim();
+
+  if (!text) {
+    alert('Najprv vytvor SMS.');
+    return;
+  }
+
+  window.location.href = 'sms:?&body=' + encodeURIComponent(text);
+}
+
+$(document).ready(function () {
+  zoradSelect("nakladka");
+  zoradSelect("vykladka");
+
+  $('#nakladka').select2({
+    width: '100%',
+    placeholder: 'Vyber nakládku',
+    allowClear: false
+  });
+
+  $('#vykladka').select2({
+    width: '100%',
+    placeholder: 'Vyber vykládku',
+    allowClear: false
+  });
+});
+</script>
+
+</body>
+</html>

@@ -40,7 +40,6 @@ textarea {
   height: 180px;
 }
 
-/* aby Select2 sedel vizuálne s ostatnými poľami */
 .select2-container .select2-selection--single {
   height: 42px !important;
   padding-top: 5px;
@@ -63,6 +62,17 @@ textarea {
 .btn-row button {
   flex: 1 1 220px;
 }
+
+.auto-btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.auto-btn-row button {
+  flex: 1 1 220px;
+}
 </style>
 </head>
 
@@ -71,6 +81,12 @@ textarea {
 <h1>Dispečing</h1>
 
 <label for="auta">Autá (môžeš vybrať viac)</label>
+
+<div class="auto-btn-row">
+  <button type="button" onclick="vybratVsetkyAuta()">Vybrať všetky autá</button>
+  <button type="button" onclick="zrusitVyberAut()">Zrušiť výber áut</button>
+</div>
+
 <select id="auta" multiple>
   <option value="AA223TE">AA223TE (8k)</option>
   <option value="AA444AJ">AA444AJ (N)</option>
@@ -326,11 +342,24 @@ function otvorSpravy() {
   window.location.href = 'sms:';
 }
 
-function vycistitFormular() {
+function vybratVsetkyAuta() {
   const auta = document.getElementById('auta');
+
+  for (let i = 0; i < auta.options.length; i++) {
+    auta.options[i].selected = true;
+  }
+}
+
+function zrusitVyberAut() {
+  const auta = document.getElementById('auta');
+
   for (let i = 0; i < auta.options.length; i++) {
     auta.options[i].selected = false;
   }
+}
+
+function vycistitFormular() {
+  zrusitVyberAut();
 
   document.getElementById('nakladka').selectedIndex = 0;
   document.getElementById('vykladka').selectedIndex = 0;
@@ -345,6 +374,7 @@ function vycistitFormular() {
 $(document).ready(function () {
   zoradSelect("nakladka");
   zoradSelect("vykladka");
+  zoradSelect("material");
 
   $('#nakladka').select2({
     width: '100%',

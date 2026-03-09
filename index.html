@@ -239,7 +239,7 @@ textarea {
 <label for="kontakt">Kontakt (voliteľné)</label>
 <input id="kontakt" type="text">
 
-<button onclick="vytvorSMS()">Vytvoriť SMS</button>
+<button onclick="vytvorAOtvorSMS()">Vytvoriť SMS</button>
 
 <label for="vysledok">Výsledok</label>
 <textarea id="vysledok"></textarea>
@@ -289,7 +289,7 @@ function otvorSMSApp() {
     return;
   }
 
-  window.location.href = 'sms:?&body=' + encodeURIComponent(text);
+  window.location.href = 'sms:&body=' + encodeURIComponent(text);
 }
 
 $(document).ready(function () {
@@ -312,3 +312,4 @@ $(document).ready(function () {
 
 </body>
 </html>
+

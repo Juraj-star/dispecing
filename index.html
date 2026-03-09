@@ -53,6 +53,16 @@ textarea {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   height: 40px !important;
 }
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-row button {
+  flex: 1 1 220px;
+}
 </style>
 </head>
 
@@ -237,12 +247,17 @@ textarea {
 </select>
 
 <label for="kontakt">Kontakt (voliteľné)</label>
-<input id="kontakt" type="text">
+<input id="kontakt" type="text" autocomplete="off">
 
-<button onclick="vytvorAOtvorSMS()">Vytvoriť SMS</button>
+<div class="btn-row">
+  <button type="button" onclick="vytvorSMS()">Vytvoriť SMS</button>
+  <button type="button" onclick="kopirovatSMS()">Kopírovať text SMS</button>
+  <button type="button" onclick="otvorSpravy()">Otvoriť Správy</button>
+  <button type="button" onclick="vycistitFormular()">Vyčistiť všetko</button>
+</div>
 
 <label for="vysledok">Výsledok</label>
-<textarea id="vysledok"></textarea>
+<textarea id="vysledok" autocomplete="off"></textarea>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -269,7 +284,15 @@ function vytvorSMS() {
   const material = document.getElementById('material').value;
   const kontakt = document.getElementById('kontakt').value.trim();
 
-  let text = "AUTÁ:\n" + vybraneAuta.join("\n") +
+  let text = "AUTÁ:\n";
+
+  if (vybraneAuta.length > 0) {
+    text += vybraneAuta.join("\n");
+  } else {
+    text += "-";
+  }
+
+  text +=
     "\n\nNakládka: " + nakladka +
     "\nVykládka: " + vykladka +
     "\nMateriál: " + material;
@@ -281,15 +304,42 @@ function vytvorSMS() {
   document.getElementById('vysledok').value = text;
 }
 
-function otvorSMSApp() {
+async function kopirovatSMS() {
   const text = document.getElementById('vysledok').value.trim();
 
   if (!text) {
-    alert('Najprv vytvor SMS.');
+    alert('Najprv klikni na „Vytvoriť SMS“.');
     return;
   }
 
-  window.location.href = 'sms:&body=' + encodeURIComponent(text);
+  try {
+    await navigator.clipboard.writeText(text);
+    alert('Text SMS je skopírovaný.');
+  } catch (err) {
+    document.getElementById('vysledok').focus();
+    document.getElementById('vysledok').select();
+    alert('Ak sa text neskopíroval automaticky, podrž prst v poli Výsledok a daj Kopírovať.');
+  }
+}
+
+function otvorSpravy() {
+  window.location.href = 'sms:';
+}
+
+function vycistitFormular() {
+  const auta = document.getElementById('auta');
+  for (let i = 0; i < auta.options.length; i++) {
+    auta.options[i].selected = false;
+  }
+
+  document.getElementById('nakladka').selectedIndex = 0;
+  document.getElementById('vykladka').selectedIndex = 0;
+  document.getElementById('material').selectedIndex = 0;
+  document.getElementById('kontakt').value = '';
+  document.getElementById('vysledok').value = '';
+
+  $('#nakladka').val($('#nakladka option:first').val()).trigger('change');
+  $('#vykladka').val($('#vykladka option:first').val()).trigger('change');
 }
 
 $(document).ready(function () {
@@ -307,9 +357,10 @@ $(document).ready(function () {
     placeholder: 'Vyber vykládku',
     allowClear: false
   });
+
+  vycistitFormular();
 });
 </script>
 
 </body>
 </html>
-
